@@ -1,6 +1,10 @@
 package gendoc
 
-import "strconv"
+import (
+	"encoding/json"
+	"strconv"
+	"strings"
+)
 
 var samplesCache = map[string]interface{}{}
 var scalarTypes map[string]struct{}
@@ -13,8 +17,12 @@ func init() {
 	}
 }
 
-func SampleFilter(message *Message) string {
-	panic("implement me!")
+// SampleFilter generate sample json data for specified message
+func SampleFilter(message *Message, file *File, indentWidth int) string {
+	sampleData := generateSample(message, file)
+	indent := strings.Repeat(" ", indentWidth)
+	sampleJSON, _ := json.MarshalIndent(sampleData, "", indent)
+	return string(sampleJSON)
 }
 
 func generateSample(message *Message, file *File) interface{} {
@@ -63,6 +71,9 @@ func setMapField(m map[string]interface{}, field *MessageField, value interface{
 }
 
 func generateEnum(enum *Enum) interface{} {
+	if len(enum.Values) == 0 {
+		return 0
+	}
 	number := enum.Values[len(enum.Values)-1].Number
 	integer, _ := strconv.Atoi(number)
 	return integer
