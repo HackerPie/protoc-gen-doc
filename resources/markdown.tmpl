@@ -24,6 +24,7 @@
 - [Scalar Value Types](#scalar-value-types)
 
 {{range .Files}}
+{{$file := .}}
 {{$file_name := .Name}}
 <a name="{{.Name | anchor}}"></a>
 <p align="right"><a href="#top">Top</a></p>
@@ -43,6 +44,12 @@
 {{range .Fields -}}
   | {{.Name}} | [{{.LongType}}](#{{.FullType | anchor}}) | {{.Label}} | {{if (index .Options "deprecated"|default false)}}**Deprecated.** {{end}}{{nobr .Description}}{{if .DefaultValue}} Default: {{.DefaultValue}}{{end}} |
 {{end}}
+
+#### Sample
+
+```json
+{{sample . $file 2 | unescape}}
+```
 {{end}}
 
 {{if .HasExtensions}}

@@ -29,6 +29,7 @@
 
 
 
+
 <a name="Booking-proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
@@ -57,6 +58,22 @@ Vehicles are some cool shit. But drive carefully!
 | color_preference | [string](#string) |  | **Deprecated.** Color preference of the customer. |
 
 
+#### Sample
+
+```json
+{
+  "color_preference": "string",
+  "confirmation_sent": false,
+  "customer_id": 0,
+  "payment_received": false,
+  "status": {
+    "description": "string",
+    "id": 0
+  },
+  "vehicle_id": 0
+}
+```
+
 
 
 
@@ -73,6 +90,15 @@ Represents the status of a vehicle booking.
 | description | [string](#string) |  | Booking status description. E.g. &#34;Active&#34;. |
 
 
+#### Sample
+
+```json
+{
+  "description": "string",
+  "id": 0
+}
+```
+
 
 
 
@@ -87,6 +113,14 @@ Represents the booking status ID.
 | ----- | ---- | ----- | ----------- |
 | id | [int32](#int32) |  | Unique booking status ID. |
 
+
+#### Sample
+
+```json
+{
+  "id": 0
+}
+```
 
 
 
@@ -122,6 +156,7 @@ Service for handling vehicle bookings.
 
 
 
+
 <a name="Customer-proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
@@ -145,6 +180,19 @@ Represents a mail address.
 | country | [string](#string) | required | Address country. |
 
 
+#### Sample
+
+```json
+{
+  "address_line_1": "string",
+  "address_line_2": "string",
+  "address_line_3": "string",
+  "country": "string",
+  "county": "string",
+  "town": "string"
+}
+```
+
 
 
 
@@ -166,6 +214,31 @@ Represents a customer.
 | mail_addresses | [Address](#com-example-Address) | repeated | Customer mail addresses, primary first. |
 
 
+#### Sample
+
+```json
+{
+  "details": "string",
+  "email_address": "string",
+  "first_name": "string",
+  "id": 0,
+  "last_name": "string",
+  "mail_addresses": [
+    {
+      "address_line_1": "string",
+      "address_line_2": "string",
+      "address_line_3": "string",
+      "country": "string",
+      "county": "string",
+      "town": "string"
+    }
+  ],
+  "phone_number": [
+    "string"
+  ]
+}
+```
+
 
 
 
@@ -176,6 +249,7 @@ Represents a customer.
  
 
  
+
 
 
 
@@ -200,6 +274,17 @@ Represents a manufacturer of cars.
 | category | [Manufacturer.Category](#com-example-Manufacturer-Category) | optional | Manufacturer category. Default: CATEGORY_EXTERNAL |
 
 
+#### Sample
+
+```json
+{
+  "category": 1,
+  "code": "string",
+  "details": "string",
+  "id": 0
+}
+```
+
 
 
 
@@ -218,6 +303,18 @@ Represents a vehicle model.
 | daily_hire_rate_dollars | [sint32](#sint32) | required | Dollars per day. |
 | daily_hire_rate_cents | [sint32](#sint32) | required | Cents per day. |
 
+
+#### Sample
+
+```json
+{
+  "daily_hire_rate_cents": 0,
+  "daily_hire_rate_dollars": 0,
+  "id": "string",
+  "model_code": "string",
+  "model_name": "string"
+}
+```
 
 
 
@@ -240,6 +337,29 @@ Represents a vehicle that can be hired.
 | daily_hire_rate_cents | [sint32](#sint32) | optional | Cents per day. |
 
 
+#### Sample
+
+```json
+{
+  "category": {
+    "code": "string",
+    "description": "string"
+  },
+  "daily_hire_rate_cents": 0,
+  "daily_hire_rate_dollars": 0,
+  "id": 0,
+  "mileage": 0,
+  "model": {
+    "daily_hire_rate_cents": 0,
+    "daily_hire_rate_dollars": 0,
+    "id": "string",
+    "model_code": "string",
+    "model_name": "string"
+  },
+  "reg_number": "string"
+}
+```
+
 
 
 | Extension | Type | Base | Number | Description |
@@ -260,6 +380,15 @@ Represents a vehicle category. E.g. &#34;Sedan&#34; or &#34;Truck&#34;.
 | code | [string](#string) | required | Category code. E.g. &#34;S&#34;. |
 | description | [string](#string) | required | Category name. E.g. &#34;Sedan&#34;. |
 
+
+#### Sample
+
+```json
+{
+  "code": "string",
+  "description": "string"
+}
+```
 
 
 

@@ -42,3 +42,8 @@ func NoBrFilter(content string) string {
 func AnchorFilter(str string) string {
 	return specialCharsPattern.ReplaceAllString(strings.ReplaceAll(str, "/", "_"), "-")
 }
+
+// Unescape outputs raw content without html escaping
+func Unescape(str string) template.HTML {
+	return template.HTML(str)
+}
