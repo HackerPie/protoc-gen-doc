@@ -72,6 +72,10 @@ func NewTemplate(descs []*protokit.FileDescriptor) *Template {
 		sort.Sort(file.Messages)
 		sort.Sort(file.Services)
 
+		file.EnumIndexes = map[string]int{}
+		for i, enum := range file.Enums {
+			file.EnumIndexes[enum.FullName] = i
+		}
 		file.MessageIndexes = map[string]int{}
 		for i, message := range file.Messages {
 			file.MessageIndexes[message.FullName] = i
@@ -141,6 +145,7 @@ type File struct {
 	HasServices   bool `json:"hasServices"`
 
 	Enums          orderedEnums      `json:"enums"`
+	EnumIndexes    map[string]int    `json:"-"`
 	Extensions     orderedExtensions `json:"extensions"`
 	Messages       orderedMessages   `json:"messages"`
 	MessageIndexes map[string]int    `json:"-"`
